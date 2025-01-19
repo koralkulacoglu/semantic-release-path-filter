@@ -11,7 +11,7 @@
     "README.md"
   ],
   "author": "Patrick McLaughlin <me@patmclaughl.in>",
-  "license": "ISC",
+  "license": "MIT",
   "description": "Wraps a semantic-release plugin to only run on commits in a specific path",
   "repository": {
     "type": "git",

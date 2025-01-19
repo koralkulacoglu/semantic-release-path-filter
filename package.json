@@ -4,6 +4,5 @@
   "workspaces": [
     "plugin",
     "test"
-  ],
-  "license": "MIT"
+  ]
 }
