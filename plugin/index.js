@@ -3,7 +3,8 @@ import { execSync } from "child_process";
 function filterCommits({ commits, logger }, path) {
   return commits.filter((commit) => {
     const changedFiles = getChangedFiles(commit.hash);
-    const isRelevant = changedFiles.some((file) => file.startsWith(path));
+    const normalizedPath = path.startsWith('./') ? path.slice(2) : path;
+    const isRelevant = changedFiles.some((file) => file.startsWith(normalizedPath));
     if (!isRelevant) {
       logger.info(
         `Filtered out commit ${commit.hash.slice(
