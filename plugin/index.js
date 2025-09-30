@@ -1,10 +1,13 @@
 import { execSync } from "child_process";
+import { relative } from "path";
 
 function filterCommits({ commits, logger }, path) {
   return commits.filter((commit) => {
     const changedFiles = getChangedFiles(commit.hash);
-    const normalizedPath = path.startsWith('./') ? path.slice(2) : path;
-    const isRelevant = changedFiles.some((file) => file.startsWith(normalizedPath));
+    const isRelevant = changedFiles.some((file) => {
+      const relativePath = relative(path, file);
+      return !relativePath.startsWith('..');
+    });
     if (!isRelevant) {
       logger.info(
         `Filtered out commit ${commit.hash.slice(
